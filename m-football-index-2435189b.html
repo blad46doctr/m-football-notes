@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>足彩 · 稳定入口与赛事说明</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background-color: #f0f7f9;
+            color: #1d2b3a;
+            line-height: 1.6;
+            padding: 0 1rem 3rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page-wrap {
+            max-width: 820px;
+            margin: 0 auto;
+            width: 100%;
+            flex: 1;
+        }
+
+        /* 开场短句 — 蓝绿色强调 */
+        .opening {
+            margin-top: 3rem;
+            margin-bottom: 1.8rem;
+            font-size: 1.8rem;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+            border-left: 6px solid #1f9a8e;
+            padding-left: 1.2rem;
+            color: #0e3e3a;
+        }
+
+        .opening em {
+            font-style: normal;
+            color: #1f9a8e;
+            font-weight: 600;
+        }
+
+        /* 承接段落 — 密度稍高，温和陈述 */
+        .bridge {
+            background: #ffffffd9;
+            backdrop-filter: blur(2px);
+            padding: 1.8rem 1.5rem;
+            border-radius: 24px;
+            box-shadow: 0 6px 18px rgba(0,40,45,0.06);
+            margin-bottom: 2.5rem;
+            border: 1px solid rgba(31,154,142,0.15);
+            font-size: 1rem;
+        }
+
+        .bridge p {
+            margin-bottom: 0.85rem;
+        }
+
+        .bridge p:last-child {
+            margin-bottom: 0;
+        }
+
+        .bridge a {
+            color: #1d7a70;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1.5px solid #1f9a8e40;
+            transition: border-color 0.2s;
+        }
+
+        .bridge a:hover {
+            border-bottom-color: #1f9a8e;
+        }
+
+        /* 网格卡片区 — 特点列表 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 2rem 0 2.8rem;
+        }
+
+        .feature-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.6rem 1.2rem 1.4rem;
+            box-shadow: 0 4px 12px rgba(0,50,55,0.04);
+            border: 1px solid #e3f0ed;
+            transition: box-shadow 0.2s, transform 0.15s;
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 8px 22px rgba(31,154,142,0.08);
+            transform: translateY(-2px);
+        }
+
+        .feature-card .icon {
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            background: #dcf4f0;
+            border-radius: 12px;
+            color: #1a7a6e;
+            font-size: 1.1rem;
+            line-height: 36px;
+            text-align: center;
+            margin-bottom: 0.9rem;
+            font-weight: 500;
+        }
+
+        .feature-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #103a36;
+            margin-bottom: 0.4rem;
+        }
+
+        .feature-card p {
+            font-size: 0.95rem;
+            color: #2b4b4a;
+            line-height: 1.5;
+        }
+
+        /* 场景 + 提示混合段 */
+        .scene-tip {
+            background: #e9f3f2;
+            border-radius: 28px;
+            padding: 1.8rem 1.8rem 1.5rem;
+            margin: 1.5rem 0 2.2rem;
+            border-left: 4px solid #1f9a8e;
+        }
+
+        .scene-tip h2 {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: #0f423d;
+            margin-bottom: 0.8rem;
+        }
+
+        .scene-tip ul {
+            list-style: none;
+            padding-left: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem 1.5rem;
+        }
+
+        .scene-tip li {
+            font-size: 0.98rem;
+            color: #1f4541;
+            position: relative;
+            padding-left: 1.4rem;
+        }
+
+        .scene-tip li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #2a9d8f;
+            font-weight: 600;
+        }
+
+        .scene-tip .note {
+            margin-top: 1.2rem;
+            background: #ffffffbb;
+            padding: 0.8rem 1rem;
+            border-radius: 18px;
+            font-size: 0.92rem;
+            color: #1d5650;
+        }
+
+        /* 温和结尾 — 简洁收束 */
+        .closing {
+            text-align: right;
+            padding: 1.8rem 0.2rem 0.5rem;
+            border-top: 1px solid #cfe3df;
+            margin-top: 1rem;
+        }
+
+        .closing p {
+            font-size: 0.95rem;
+            color: #2b605a;
+            max-width: 70%;
+            margin-left: auto;
+        }
+
+        .closing a {
+            color: #1f9a8e;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid #1f9a8e60;
+        }
+
+        .closing a:hover {
+            border-bottom-color: #1f9a8e;
+        }
+
+        /* 常见问题摘要（FAQ 精简短） */
+        .faq-mini {
+            margin: 2rem 0 1.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+
+        .faq-item {
+            background: #ffffffd0;
+            border-radius: 18px;
+            padding: 1rem 1.4rem;
+            border: 1px solid #dceeeb;
+            font-size: 0.95rem;
+        }
+
+        .faq-item strong {
+            color: #0f4942;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.15rem;
+        }
+
+        .faq-item span {
+            color: #23504c;
+        }
+
+        .faq-item a {
+            color: #1d7a70;
+            text-decoration: none;
+            border-bottom: 1px dotted #1f9a8e80;
+        }
+
+        /* 响应式细节 — 移动端友好 */
+        @media (max-width: 580px) {
+            .opening {
+                font-size: 1.5rem;
+                padding-left: 0.9rem;
+                margin-top: 2rem;
+            }
+
+            .bridge {
+                padding: 1.3rem 1.1rem;
+                border-radius: 20px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+                gap: 0.9rem;
+            }
+
+            .scene-tip {
+                padding: 1.3rem 1.1rem;
+            }
+
+            .closing p {
+                max-width: 100%;
+            }
+
+            .faq-item {
+                padding: 0.85rem 1rem;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .opening {
+                font-size: 1.25rem;
+            }
+
+            .feature-card {
+                padding: 1.2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+
+    <!-- 开场短句 -->
+    <div class="opening">
+        一份关于<em>足彩</em>的简明索引。
+    </div>
+
+    <!-- 承接段落：稳定入口与页面说明 -->
+    <div class="bridge">
+        <p>无论查询赛前数据还是赛后复盘，一个稳定的信息起点能节省大量精力。<a href="https://m-football-lottery.com">足彩</a>板块聚合了欧洲、亚洲主要联赛的即时赔率与球队近况，页面结构保持克制——没有弹窗干扰，也没有冗余的跳转链。</p>
+        <p>你可以把这里当作日常浏览的固定锚点。内容更新由赛事进程驱动，不依赖自动刷新脚本；每个赔率变动都附有简短注解，方便快速理解调整逻辑。信息密度经过筛选，不堆砌无源数据。</p>
+    </div>
+
+    <!-- 特点列表：网格卡片 -->
+    <div class="feature-grid">
+        <div class="feature-card">
+            <div class="icon">⇄</div>
+            <h3>赛前维度</h3>
+            <p>主客近期战绩、伤停名单、历史交锋倾向。每一项都有明确来源，不混入推测性评分。</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">／</div>
+            <h3>盘中追踪</h3>
+            <p>实时赔率折线与资金分布简表。仅展示权威平台数据，过滤异常波动噪音。</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">⌂</div>
+            <h3>固定入口</h3>
+            <p>URL 结构长期不变，不会因活动页或临时专题改变默认路径。适合加入浏览器书签。</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">⊞</div>
+            <h3>低冗余说明</h3>
+            <p>每项数据旁附带一行解释（例如“平赔下调通常反映客队拉力”），帮助新用户建立上下文。</p>
+        </div>
+    </div>
+
+    <!-- 场景 + 提示混排 -->
+    <div class="scene-tip">
+        <h2>常见使用场景</h2>
+        <ul>
+            <li>赛前 2–6 小时查看赔率波动</li>
+            <li>比较多家机构初盘与即时盘差异</li>
+            <li>快速定位球队伤病列表（非深度分析）</li>
+            <li>赛后核对终盘与赛果的偏离幅度</li>
+        </ul>
+        <div class="note">
+            💡 提示：页面所有赔率数据延迟不超过 3 分钟，实际以出票时柜台为准。建议同时关注官方赛程变动。
+        </div>
+    </div>
+
+    <!-- FAQ 摘要（精简短问答） -->
+    <div class="faq-mini">
+        <div class="faq-item">
+            <strong>Q：数据源是否透明？</strong>
+            <span>主要参考主流交易所及多家信誉机构，每个数据块下方均有缩写标注。部分小众联赛覆盖度较低，<a href="https://m-football-lottery.com">足彩</a>页面会标注“数据稀疏”。</span>
+        </div>
+        <div class="faq-item">
+            <strong>Q：是否需要注册？</strong>
+            <span>浏览赔率与赛程无需登录。仅收藏关注赛事列表时需轻量账户（可选）。所有功能均无强制绑定。</span>
+        </div>
+    </div>
+
+    <!-- 温和结尾 -->
+    <div class="closing">
+        <p>
+            信息环境越繁杂，越需要一个简洁的固定起点。<br>
+            你可以随时回到 <a href="https://m-football-lottery.com">足彩</a> 这个页面，它不会频繁改变布局。
+        </p>
+    </div>
+
+</div>
+</body>
+</html>
